@@ -1,17 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import Dashboard from './Pages/Dashboard';
+import MarketPlaceTrajet from "./Pages/MarketPlaceTrajet";
+import Error from "./Pages/Error";
+import Card from "./Pages/Card";
+import Profile from "./Pages/Profile";
+import Destination from "./Pages/Destination";
+import Interne from "./Pages/Interne";
+import Externe from "./Pages/Externe";
+import SellCard from "./Pages/SellCard";
+import ExchangeCard from "./Pages/ExchangeCard";
+import MarketPlaceCard from "./Pages/MarketPlaceCard";
+import DashboardAdmin from "./Pages/Administrateur/DashboardAdmin";
+import AddTrajet from "./Pages/Administrateur/AddTrajet";
+import AddCarte from "./Pages/Administrateur/AddCarte";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <BrowserRouter>
+        <Routes>
+            <Route path={"/"} element={<Home/>}/>
+            <Route path={"/login"} element={<Login/>}/>
+            <Route path={"/register"} element={<Register/>}/>
+            <Route path={"/dashboard"} element={<Dashboard/>}/>
+            <Route path={"/shop"} component={MarketPlaceTrajet} element={<MarketPlaceTrajet/>}/>
+            <Route path={"/card"} element={<Card/>}/>
+            <Route path={"/profile"} element={<Profile/>}/>
+            <Route path={"/destinationI/:data"} component={Interne}  element={<Interne/>}/>
+            <Route path={"/destinationE/:data"} component={Externe}  element={<Externe/>}/>
+            <Route path={"/destination"} exact component={Destination} element={<Destination/>} />
+            <Route path={"/sellCard"} element={<SellCard/>}/>
+            <Route path={"/exchangeCard"} element={<ExchangeCard/>}/>
+            <Route path={"/marketPlaceCard"} element={<MarketPlaceCard/>}/>
+            <Route path={"/dashboardAdmin"} element={<DashboardAdmin/>}/>
+            <Route path={"/addTrajet"} element={<AddTrajet/>}/>
+            <Route path={"/addCarte"} element={<AddCarte/>}/>
+            <Route path={"*"} element={<Error/>}/>
+        </Routes>
+    </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
