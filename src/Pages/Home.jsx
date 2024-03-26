@@ -1,7 +1,7 @@
 import Header from "../Components/Header";
 import {useEffect, useState} from "react";
 import Web3 from "web3";
-import { connectToWeb3 } from '../web3Util';
+import { connectToWeb3,accounts } from '../web3Util';
 
 const links = [
     { name: 'Me connecter', href: '#' },
@@ -16,7 +16,6 @@ const stats = [
     { name: 'Satisfaction', value: '97 %' },
 ]
 const Home = () => {
-
 
     return (
         <div>

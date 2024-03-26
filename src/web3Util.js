@@ -12,17 +12,13 @@ export const connectToWeb3 = async () => {
         if (window.ethereum) {
             // Demande à l'utilisateur l'autorisation de se connecter
             await window.ethereum.request({ method: 'eth_requestAccounts' });
-
             // Crée une instance de Web3 avec le provider Ethereum
             const web3 = new Web3(window.ethereum);
-
             // Récupère les comptes de l'utilisateur
             const accounts = await web3.eth.getAccounts();
             console.log('Comptes :', accounts);
-
             const balance = await web3.eth.getBalance(accounts[0]);
             console.log('Balance :', balance);
-
             return {
                 accounts: accounts,
                 balance: web3.utils.fromWei(balance, 'ether')
