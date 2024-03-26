@@ -1,6 +1,7 @@
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import {useParams} from "react-router-dom";
 import {useLocation} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 const contacts = [{
     name: "Jean Dupont",
@@ -20,6 +21,19 @@ const contacts = [{
 const ExchangeCard = () => {
     const { search } = useLocation();
     const params = new URLSearchParams(search);
+    const [web3Error, setWeb3Error] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                //const obtenirUtilisateur = await contract.methods.envoyerCarte(id, name, contactSelect).call();
+            } catch (error) {
+                setWeb3Error(error.message);
+            }
+        };
+        fetchData();
+    }, []);
+
     const item = {
         id: params.get('id'),
         name: params.get('name'),
@@ -101,7 +115,7 @@ const ExchangeCard = () => {
                         </div>
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        <a href="/dashboard"
+                        <a href="/Carte/Dashboard"
                            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Retour
                         </a>

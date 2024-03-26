@@ -1,6 +1,6 @@
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import {Link, useParams} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const cards = [
     {
@@ -25,6 +25,19 @@ const cards = [
 ]
 
 const SellCard = () => {
+
+    const [web3Error, setWeb3Error] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                //const obtenirUtilisateur = await contract.methods.envoyerCarte(id, name).call();
+            } catch (error) {
+                setWeb3Error(error.message);
+            }
+        };
+        fetchData();
+    }, []);
 
     const handleSellCard = (event) => {
         event.preventDefault();
@@ -97,7 +110,7 @@ const SellCard = () => {
                         </div>
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        <a href="/destination"
+                        <a href="/Destination/Destination"
                            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Retour
                         </a>

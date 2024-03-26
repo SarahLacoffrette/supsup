@@ -1,13 +1,31 @@
-import Header from "../Components/Header";
-import {Link, useParams} from "react-router-dom";
-import {useState} from "react";
+import Header from "../../Components/Header";
+import {useEffect, useState} from "react";
+import {connectToWeb3, contract} from "../../web3Util";
+const Login = () => {
 
-const Interne = () => {
-    const { data } = useParams();
-    const [inputDepart, setInputDepart] = useState('');
-    const handleChangeDepart = (event) => {
-        setInputDepart(event.target.value);
-    };
+    const [accounts, setAccounts] = useState([]);
+    const [web3Error, setWeb3Error] = useState(null);
+    const [balance, setBalance] = useState(null)
+    const [mdp, setMdp] = useState('')
+    const [pseudo, setPseudo] = useState('')
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                //const connexion = await contract.methods.connexion(mdp).call();
+            } catch (error) {
+                setWeb3Error(error.message);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('Pseudo : ', event.target.pseudo.value);
+        console.log('Password : ', event.target.password.value);
+    }
+
     return (
         <div>
             <Header/>
@@ -19,65 +37,68 @@ const Interne = () => {
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                        Préparez votre voyage ...
+                        Connectez-vous à votre compte
                     </h2>
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
-                                Ville
+                            <label htmlFor="pseudo" className="block text-sm font-medium leading-6 text-gray-900">
+                                Pseudo
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="depart"
-                                    name="depart"
-                                    type="depart"
-                                    autoComplete="depart"
-                                    value={inputDepart}
-                                    onChange={handleChangeDepart}
-                                    //required
+                                    id="pseudo"
+                                    name="pseudo"
+                                    type="pseudo"
+                                    autoComplete="pseudo"
+                                    required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
                         <div>
                             <div className="flex items-center justify-between">
-                                <label htmlFor="destination"
-                                       className="block text-sm font-medium leading-6 text-gray-900">
-                                    Date
+                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                                    Mot de passe
                                 </label>
+                                <div className="text-sm">
+                                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                        Mot de passe oublié ?
+                                    </a>
+                                </div>
                             </div>
                             <div className="mt-2">
                                 <input
-                                    id="date"
-                                    name="date"
-                                    type="date"
-                                    value={new Date().toISOString().split('T')[0]}
-                                    //required
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autoComplete="current-password"
+                                    required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
                         <div>
                             <button
-                                type="button"
+                                type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                <Link to={`/shop?data=interne&depart=${inputDepart}&arrive=''`}>Je voyage !</Link>
+                                Connexion
                             </button>
                         </div>
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        <a href="/destination" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            Retour
+                        Pas de compte ?{' '}
+                        <a href="/Connexion/Register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                            Je m'inscris !
                         </a>
                     </p>
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Interne;
+export default Login;

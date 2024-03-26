@@ -1,6 +1,7 @@
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import {CheckIcon} from "@heroicons/react/20/solid";
 import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 const cards = [
     {
@@ -25,6 +26,19 @@ const cards = [
 ]
 
 const Dashboard = () => {
+
+    const [web3Error, setWeb3Error] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                //const miseEnVenteCarteMarcheOccasion = await contract.methods.miseEnVenteCarteMarcheOccasion().call();
+            } catch (error) {
+                setWeb3Error(error.message);
+            }
+        };
+        fetchData();
+    }, []);
 
     const handleBuy = (id, carte, prix, nbUtilisation) => {
         console.log('id : ', id);
@@ -62,7 +76,7 @@ const Dashboard = () => {
                                 </div>
                                 <div className="mx-auto max-w-xs px-8">
                                     <a
-                                        href="/destination"
+                                        href="/Destination/Destination"
                                         className="mt-5 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     >Utiliser cette carte</a>
                                 </div>

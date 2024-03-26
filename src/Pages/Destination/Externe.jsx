@@ -1,4 +1,4 @@
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
 import {Link, useParams} from 'react-router-dom';
 import {useState} from "react";
 
@@ -97,7 +97,7 @@ const Externe = () => {
                         </div>
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        <a href="/destination" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        <a href="/Destination/Destination" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Retour
                         </a>
                     </p>

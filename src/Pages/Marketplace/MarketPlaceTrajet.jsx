@@ -1,5 +1,5 @@
-import Header from "../Components/Header";
-import QuickView from "../Components/QuickView";
+import Header from "../../Components/Header";
+import QuickView from "../../Components/QuickView";
 import {useLocation, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 
@@ -106,12 +106,23 @@ const MarketPlaceTrajet = () => {
     const depart = params.get('depart');
     const arrive = params.get('arrive');
 
+    const [web3Error, setWeb3Error] = useState(null);
+
     useEffect(() => {
         if(data === 'externe'){
             setFilteredData(products.filter(item => (item.locomotion == 'Train' && item.arrive == arrive && item.depart == depart || item.locomotion == 'Bus' && item.arrive == arrive && item.depart == depart)));
         } else if(data === 'interne'){
             setFilteredData(products.filter(item => (item.locomotion == 'Tram' && item.depart == depart && item.arrive == '' || item.locomotion == 'Bus' && item.depart == depart && item.arrive == '')));
         }
+        const fetchData = async () => {
+            try {
+                //const obtenirCarteMarchePrincipal = await contract.methods.obtenirCarteMarchePrincipal().call();
+                // => products = obtenirCarteMarchePrincipal
+            } catch (error) {
+                setWeb3Error(error.message);
+            }
+        };
+        fetchData();
     }, [data]);
 
     const handleBuy = (id, depart, arrive, price, locomotion) => {

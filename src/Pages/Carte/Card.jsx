@@ -1,6 +1,8 @@
-import Header from "../Components/Header";
+import Header from "../../Components/Header";
+import {connectToWeb3, contract} from "../../web3Util";
 
 import { CheckIcon } from '@heroicons/react/20/solid'
+import {useEffect, useState} from "react";
 
 const includedFeaturesMember = [
     'Offres spéciales',
@@ -21,6 +23,19 @@ const includedFeaturesGold = [
     'Expérience de luxe'
 ]
 const Card = () => {
+
+    const [web3Error, setWeb3Error] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                //const achatCarteMarchePrincipal = await contract.methods.achatCarteMarchePrincipal.call();
+            } catch (error) {
+                setWeb3Error(error.message);
+            }
+        };
+        fetchData();
+    }, []);
     const handleBuy = (id, carte, prix) => {
         console.log('id : ', id);
         console.log('carte : ', carte);

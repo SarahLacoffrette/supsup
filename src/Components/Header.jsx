@@ -105,10 +105,10 @@ const Header = () => {
                         </Transition>
                     </Popover>
 
-                    <a href="/dashboard" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href="/Carte/Dashboard" className="text-sm font-semibold leading-6 text-gray-900">
                         Tableau de bord
                     </a>
-                    <a href="/marketplacecard" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href="/Marketplace/MarketPlaceCard" className="text-sm font-semibold leading-6 text-gray-900">
                         Troc de cartes
                     </a>
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
@@ -116,7 +116,7 @@ const Header = () => {
                     </a>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href="/Connexion/Login" className="text-sm font-semibold leading-6 text-gray-900">
                         Connexion <span aria-hidden="true">&rarr;</span>
                     </a>
                 </div>
