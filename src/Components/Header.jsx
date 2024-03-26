@@ -12,11 +12,11 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
 const products = [
-    { name: 'Tableau de board', description: 'Consultez votre vos cartes et vos voyages', href: '/dashboard', icon: ChartPieIcon },
+    { name: 'Tableau de board', description: 'Consultez votre vos cartes et vos voyages', href: '/tableauDeBord', icon: ChartPieIcon },
     { name: 'Réservation', description: 'Réservez votre billet dès maintenant ! ', href: '/destination', icon: CursorArrowRaysIcon },
     { name: 'Profile', description: 'Consulter votre profile', href: '/profile', icon: FingerPrintIcon },
     { name: 'Acheter une carte', description: 'Ajoutez une carte avantage', href: '/card', icon: SquaresPlusIcon },
-    { name: 'Administration', description: 'Accès administrateur', href: '/dashboardadmin', icon: ArrowPathIcon },
+    { name: 'Administration', description: 'Accès administrateur', href: '/tableaudebordadmin', icon: ArrowPathIcon },
 ]
 const callsToAction = [
     { name: 'Tutoriel', href: '#', icon: PlayCircleIcon },
@@ -116,7 +116,7 @@ const Header = () => {
                     </a>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="/Connexion/Login" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href="/connexion" className="text-sm font-semibold leading-6 text-gray-900">
                         Connexion <span aria-hidden="true">&rarr;</span>
                     </a>
                 </div>

@@ -4,25 +4,25 @@ import {connectToWeb3, contract} from "../../web3Util";
 import { CheckIcon } from '@heroicons/react/20/solid'
 import {useEffect, useState} from "react";
 
-const includedFeaturesMember = [
+const offreMembre = [
     'Offres spéciales',
     'Réductions personnalisées -10%',
    ' Accès exclusif',
    ' Expérience sur mesure'
 ]
-const includedFeaturesSilver = [
+const offreArgent = [
     'Réductions importantes -25%',
     'Services privilégiés',
     'Accès réservé',
    ' Avantages supplémentaires'
 ]
-const includedFeaturesGold = [
+const offreGold = [
     'Réductions exclusives -50%',
     'Avantages VIP',
     'Service de conciergerie',
     'Expérience de luxe'
 ]
-const Card = () => {
+const MarketPlaceCarte = () => {
 
     const [web3Error, setWeb3Error] = useState(null);
 
@@ -36,12 +36,19 @@ const Card = () => {
         };
         fetchData();
     }, []);
+
+    const acheterBillet = async () =>{
+        //await contract.methods.achatCarteMarchePrincipal.call(id);
+        //TODO : Revoir la gestion des id
+    }
+
     const handleBuy = (id, carte, prix) => {
         console.log('id : ', id);
         console.log('carte : ', carte);
         console.log('prix : ', prix);
-
+        acheterBillet();
     }
+
     return (
         <div className="card">
             <Header/>
@@ -70,7 +77,7 @@ const Card = () => {
                                 role="list"
                                 className="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6"
                             >
-                                {includedFeaturesMember.map((feature) => (
+                                {offreMembre.map((feature) => (
                                     <li key={feature} className="flex gap-x-3">
                                         <CheckIcon className="h-6 w-5 flex-none text-indigo-600" aria-hidden="true"/>
                                         {feature}
@@ -119,7 +126,7 @@ const Card = () => {
                                 role="list"
                                 className="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6"
                             >
-                                {includedFeaturesSilver.map((feature) => (
+                                {offreArgent.map((feature) => (
                                     <li key={feature} className="flex gap-x-3">
                                         <CheckIcon className="h-6 w-5 flex-none text-indigo-600" aria-hidden="true"/>
                                         {feature}
@@ -168,7 +175,7 @@ const Card = () => {
                                 role="list"
                                 className="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6"
                             >
-                                {includedFeaturesGold.map((feature) => (
+                                {offreGold.map((feature) => (
                                     <li key={feature} className="flex gap-x-3">
                                         <CheckIcon className="h-6 w-5 flex-none text-indigo-600" aria-hidden="true"/>
                                         {feature}
@@ -206,4 +213,4 @@ const Card = () => {
         </div>
     );
 }
-export default Card;
+export default MarketPlaceCarte;

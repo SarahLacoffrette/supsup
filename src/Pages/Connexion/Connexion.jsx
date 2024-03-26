@@ -1,7 +1,7 @@
 import Header from "../../Components/Header";
 import {useEffect, useState} from "react";
 import {connectToWeb3, contract} from "../../web3Util";
-const Login = () => {
+const Connexion = () => {
 
     const [accounts, setAccounts] = useState([]);
     const [web3Error, setWeb3Error] = useState(null);
@@ -9,21 +9,20 @@ const Login = () => {
     const [mdp, setMdp] = useState('')
     const [pseudo, setPseudo] = useState('')
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                //const connexion = await contract.methods.connexion(mdp).call();
-            } catch (error) {
-                setWeb3Error(error.message);
-            }
-        };
-        fetchData();
-    }, []);
+    const postData = async () => {
+        try {
+            //const connexion = await contract.methods.connexion(mdp).call();
+        } catch (error) {
+            setWeb3Error(error.message);
+        }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Pseudo : ', event.target.pseudo.value);
-        console.log('Password : ', event.target.password.value);
+        console.log('mdp : ', event.target.mdp.value);
+        postData();
+        
     }
 
     return (
@@ -60,7 +59,7 @@ const Login = () => {
                         </div>
                         <div>
                             <div className="flex items-center justify-between">
-                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                                <label htmlFor="mdp" className="block text-sm font-medium leading-6 text-gray-900">
                                     Mot de passe
                                 </label>
                                 <div className="text-sm">
@@ -71,10 +70,10 @@ const Login = () => {
                             </div>
                             <div className="mt-2">
                                 <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="current-password"
+                                    id="mdp"
+                                    name="mdp"
+                                    type="mdp"
+                                    autoComplete="current-mdp"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
@@ -91,7 +90,7 @@ const Login = () => {
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
                         Pas de compte ?{' '}
-                        <a href="/Connexion/Register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        <a href="/inscription" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Je m'inscris !
                         </a>
                     </p>
@@ -101,4 +100,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Connexion;

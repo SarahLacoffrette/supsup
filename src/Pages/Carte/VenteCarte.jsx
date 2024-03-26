@@ -2,48 +2,62 @@ import Header from "../../Components/Header";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 
-const cards = [
+const cartes = [
     {
         id: 1,
-        name: 'Carte Membre',
-        price: 45,
+        type: 10,
+        prix: 45,
         nombreUtilisation: 10
 
     },
     {
         id: 2,
-        name: 'Carte Argent',
-        price: 60,
+        type: 20,
+        prix: 60,
         nombreUtilisation: 5
     },
     {
         id: 3,
-        name: 'Carte gold',
-        price: 75,
+        type: 40,
+        prix: 75,
         nombreUtilisation: 2
     }
 ]
 
-const SellCard = () => {
+const VenteCarte = () => {
 
     const [web3Error, setWeb3Error] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                //const obtenirUtilisateur = await contract.methods.envoyerCarte(id, name).call();
-            } catch (error) {
-                setWeb3Error(error.message);
-            }
-        };
-        fetchData();
-    }, []);
+    const [id, setId] = useSate(0);
+    const [type, setType] = usestate(0);
 
     const handleSellCard = (event) => {
         event.preventDefault();
-        console.log('id', event.target.cardSelect.value);
-        console.log('price', event.target.price.value);
+        console.log('id', event.target.carteselect.value);
+        console.log('prix', event.target.prix.value);
+        VendreCarte();
+    }
 
+    const VendreCarte = async () => {
+        try {
+            //await contract.methods.miseEnVenteCarteMarcheOccasion(id, type).call();
+        } catch (error) {
+            setWeb3Error(error.message);
+        }
+    };
+
+    const handleChangeCarte = (id, type) => {
+        setId(id);
+        setType(type);
+    }
+
+    const getCartes = (type) => {
+        if(type === 10){
+            return 'Carte Membre';
+        } else if(type === 20){
+            return 'Carte Argent';
+        } else {
+            return 'Carte Gold';
+        }
     }
 
     return (
@@ -72,13 +86,14 @@ const SellCard = () => {
                             </div>
                             <div className="mt-2">
                                 <select
-                                    id="cardSelect"
-                                    name="cardSelect"
+                                    id="carteselect"
+                                    name="carteselect"
+                                    onChange={handleChangeCarte(item.id, item.type)}
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                    <option value="">-- Choisir une carte --</option>
-                                    {cards.map((item) => (
-                                        <option value={item.id}>{item.name} - Nombre d'utilisation restant
+                                    <option value={type}>-- Choisir une carte --</option>
+                                    {cartes.map((item) => (
+                                        <option value={item.id}>{getCartes(item.type)} - Nombre d'utilisation restant
                                             : {item.nombreUtilisation}</option>
                                     ))}
                                 </select>
@@ -86,12 +101,12 @@ const SellCard = () => {
                         </div>
                         <div>
                             <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
-                                Price
+                                prix
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="price"
-                                    name="price"
+                                    id="prix"
+                                    name="prix"
                                     type="number"
                                     autoComplete="00"
                                     required
@@ -121,4 +136,4 @@ const SellCard = () => {
     );
 }
 
-export default SellCard;
+export default VenteCarte;

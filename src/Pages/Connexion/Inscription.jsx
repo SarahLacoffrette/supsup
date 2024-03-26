@@ -2,43 +2,41 @@ import Header from "../../Components/Header";
 import {useEffect, useState} from "react";
 import {connectToWeb3, contract} from "../../web3Util";
 
-const Register = () => {
+const Inscription = () => {
 
-    const [inputMdp, setInputMdp] = useState('');
-    const [inputPseudo, setInputPseudo] = useState('');
+    const [mdp, setMdp] = useState('');
+    const [pseudo, setPseudo] = useState('');
     const [inputConfirmMdp, setInputConfirmMdp] = useState('');
     const [stateMdp, setStateMdp] = useState(<p></p>);
     const [web3Error, setWeb3Error] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                //const inscription = await contract.methods.inscription(pseudo, mdp).call();
-            } catch (error) {
-                setWeb3Error(error.message);
-            }
-        };
-        fetchData();
-    }, []);
-
     const handleChangeMdp = (event) => {
-        setInputMdp(event.target.value);
+        setMdp(event.target.value);
     };
 
     const handleChangeConfirmMdp= (event) => {
         setInputConfirmMdp(event.target.value);
-        checkMdp(inputMdp, event.target.value);
+        checkMdp(mdp, event.target.value);
     };
 
     const handleChangePseudo = (event) => {
-        setInputPseudo(event.target.value);
+        setPseudo(event.target.value);
     }
+
+    const postData = async () => {
+        try {
+            //const inscription = await contract.methods.inscription(pseudo, mdp).call();
+        } catch (error) {
+            setWeb3Error(error.message);
+        }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Pseudo : ', event.target.pseudo.value);
         console.log('Email : ', event.target.email.value);
         console.log('Mdp : ', event.target.Mdp.value);
+        postData();
     }
 
     const handleCancel = () => {
@@ -80,7 +78,7 @@ const Register = () => {
                                     id="pseudo"
                                     name="pseudo"
                                     type="pseudo"
-                                    value={inputPseudo} onChange={handleChangePseudo}
+                                    value={pseudo} onChange={handleChangePseudo}
                                     autoComplete="pseudo"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
@@ -111,7 +109,7 @@ const Register = () => {
                                         type="Mdp"
                                         name="Mdp"
                                         id="Mdp"
-                                        value={inputMdp} onChange={handleChangeMdp}
+                                        value={mdp} onChange={handleChangeMdp}
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
@@ -146,4 +144,4 @@ const Register = () => {
     )
 }
 
-export default Register;
+export default Inscription;

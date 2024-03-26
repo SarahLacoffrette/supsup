@@ -3,43 +3,53 @@ import {Link} from "react-router-dom";
 import {useState} from "react";
 
 const AddTrajet = () => {
-    const [inputDepart, setInputDepart] = useState('');
-    const [inputArrive, setInputArrive] = useState('');
-    const [inputDate, setInputDate] = useState(new Date().toISOString().split('T')[0]);
-    const [inputLocomotion, setInputLocomotion] = useState('');
-    const [inputPrice, setInputPrice] = useState(10);
-    const [inputUrl, setInputUrl] = useState("");
+    const [depart, setdepart] = useState('');
+    const [destination, setdestination] = useState('');
+    const [date, setdate] = useState(new Date().toISOString().split('T')[0]);
+    const [typeVehicule, settypeVehicule] = useState('');
+    const [prix, setprix] = useState(10);
+    const [url, seturl] = useState("");
 
+    const [web3Error, setWeb3Error] = useState(null);
 
     const handleChangeDepart = (event) => {
-        setInputDepart(event.target.value);
+        setdepart(event.target.value);
     };
-    const handleChangeArrive = (event) => {
-        setInputArrive(event.target.value);
+    const handleChangedestination = (event) => {
+        setdestination(event.target.value);
     }
     const handleChangeDate = (event) => {
-        setInputDate(event.target.value);
+        setdate(event.target.value);
     }
 
-    const handleChangeLocomotion = (event) => {
-        setInputLocomotion(event.target.value);
+    const handleChangetypeVehicule = (event) => {
+        settypeVehicule(event.target.value);
     }
 
-    const handleChangePrice = (event) => {
-        setInputPrice(event.target.value);
+    const handleChangeprix = (event) => {
+        setprix(event.target.value);
     }
 
     const handleUrl = (event) => {
-        setInputUrl(event.target.value);
+        seturl(event.target.value);
     }
+
+    const postData = async () => {
+        try {
+            //await contract.methods.creerTrajet.call(typeVehicule, depart, destination, date, 00,  true, 100, prix);
+        } catch (error) {
+            setWeb3Error(error.message);
+        }
+    };
 
     const handleTrajet = (event) => {
         event.preventDefault();
-        console.log('depart', inputDepart);
-        console.log('arrive', inputArrive);
-        console.log('date', inputDate);
-        console.log('locomotion', inputLocomotion);
-        console.log('price', inputPrice);
+        console.log('depart', depart);
+        console.log('destination', destination);
+        console.log('date', date);
+        console.log('typeVehicule', typeVehicule);
+        console.log('prix', prix);
+        postData();
 
     }
 
@@ -70,7 +80,7 @@ const AddTrajet = () => {
                                     name="depart"
                                     type="depart"
                                     autoComplete="depart"
-                                    value={inputDepart}
+                                    value={depart}
                                     onChange={handleChangeDepart}
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -90,8 +100,8 @@ const AddTrajet = () => {
                                     name="destination"
                                     type="destination"
                                     autoComplete="current-destination"
-                                    value={inputArrive}
-                                    onChange={handleChangeArrive}
+                                    value={destination}
+                                    onChange={handleChangedestination}
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
@@ -99,15 +109,15 @@ const AddTrajet = () => {
                         </div>
                         <div>
                             <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
-                                Price
+                                prix
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="price"
-                                    name="price"
+                                    id="prix"
+                                    name="prix"
                                     type="number"
-                                    value={inputPrice}
-                                    onChange={handleChangePrice}
+                                    value={prix}
+                                    onChange={handleChangeprix}
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
@@ -125,7 +135,7 @@ const AddTrajet = () => {
                                     id="date"
                                     name="date"
                                     type="date"
-                                    value={inputDate}
+                                    value={date}
                                     onChange={handleChangeDate}
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -134,16 +144,16 @@ const AddTrajet = () => {
                         </div>
                         <div className="mt-2">
                             <div className="flex items-center justify-between">
-                                <label htmlFor="locomotion"
+                                <label htmlFor="typeVehicule"
                                        className="block text-sm font-medium leading-6 text-gray-900">
                                     Moyen de transport
                                 </label>
                             </div>
                             <select
-                                id="locomotion"
-                                name="locomotion"
-                                value={inputLocomotion}
-                                onChange={handleChangeLocomotion}
+                                id="typeVehicule"
+                                name="typeVehicule"
+                                value={typeVehicule}
+                                onChange={handleChangetypeVehicule}
                                 required
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <option value="">-- Choisir le transport --</option>
@@ -165,7 +175,7 @@ const AddTrajet = () => {
                                         id="url"
                                         name="url"
                                         type="url"
-                                        value={inputUrl}
+                                        value={url}
                                         onChange={handleUrl}
                                         required
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

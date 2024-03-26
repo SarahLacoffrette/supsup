@@ -95,7 +95,22 @@ const products = [
     }
 ]
 
-const DashboardAdmin = () => {
+const TableauDeBordAdmin = () => {
+
+    const [web3Error, setWeb3Error] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                //const products = await contract.methods.consulterTrajets.call();
+            } catch (error) {
+                setWeb3Error(error.message);
+            }
+        };
+        fetchData();
+    }, []);
+
+
     return (
         <div>
             <Header/>
@@ -144,4 +159,4 @@ const DashboardAdmin = () => {
     )
 }
 
-export default DashboardAdmin;
+export default TableauDeBordAdmin;

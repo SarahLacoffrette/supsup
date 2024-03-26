@@ -109,21 +109,15 @@ const MarketPlaceTrajet = () => {
     const [web3Error, setWeb3Error] = useState(null);
 
     useEffect(() => {
-        if(data === 'externe'){
-            setFilteredData(products.filter(item => (item.locomotion == 'Train' && item.arrive == arrive && item.depart == depart || item.locomotion == 'Bus' && item.arrive == arrive && item.depart == depart)));
-        } else if(data === 'interne'){
-            setFilteredData(products.filter(item => (item.locomotion == 'Tram' && item.depart == depart && item.arrive == '' || item.locomotion == 'Bus' && item.depart == depart && item.arrive == '')));
-        }
         const fetchData = async () => {
             try {
-                //const obtenirCarteMarchePrincipal = await contract.methods.obtenirCarteMarchePrincipal().call();
-                // => products = obtenirCarteMarchePrincipal
+                //const products = await contract.methods.consulterTrajets.call();
             } catch (error) {
                 setWeb3Error(error.message);
             }
         };
         fetchData();
-    }, [data]);
+    }, []);
 
     const handleBuy = (id, depart, arrive, price, locomotion) => {
         console.log('Billet :', data);

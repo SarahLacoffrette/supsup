@@ -4,29 +4,38 @@ import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 const contacts = [{
-    name: "Jean Dupont",
-    email: "Jean@Dupont.com",
+    pseudo: "Jean Dupont",
+    adresse: "Jean@Dupont.com",
 },{
-    name: "Marie Dupont",
-    email: "Marie@dupond.com",
+    pseudo: "Marie Dupont",
+    adresse: "Marie@dupond.com",
 },{
-    name: "Jean Reney",
-    email: "Jean@reney.com",
+    pseudo: "Jean Reney",
+    adresse: "Jean@reney.com",
 },{
-    name: "Robin Dupond",
-    email: "Robin@dupond.com",
+    pseudo: "Robin Dupond",
+    adresse: "Robin@dupond.com",
 }]
 
 
-const ExchangeCard = () => {
+const EchangeCarte = () => {
     const { search } = useLocation();
     const params = new URLSearchParams(search);
     const [web3Error, setWeb3Error] = useState(null);
 
+    const [adresseProprio, setAdresseProprio] = useState('');
+
+    const item = {
+        id: params.get('id'),
+        type: params.get('type'),
+        prix: params.get('prix'),
+        nombreUtilisation: params.get('nombreUtilisation'),
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //const obtenirUtilisateur = await contract.methods.envoyerCarte(id, name, contactSelect).call();
+                //const contacts = await contract.methods.obtenirUtilisateur().call();
             } catch (error) {
                 setWeb3Error(error.message);
             }
@@ -34,17 +43,26 @@ const ExchangeCard = () => {
         fetchData();
     }, []);
 
-    const item = {
-        id: params.get('id'),
-        name: params.get('name'),
-        price: params.get('price'),
-        nombreUtilisation: params.get('nombreUtilisation'),
-        type: params.get('type')
-    };
-    const handleSellCard = (event) => {
+    const echangerCarte = async() => {
+        try {
+            // await contract.methods.envoyerCarte(item.id, item.type, adresseProprio).call();
+        } catch (error) {
+            setWeb3Error(error.message);
+        }
+    }
+
+    const handleEchangeCarte = (event) => {
         event.preventDefault();
         console.log('contact : ', event.target.contactSelect.value);
+        echangerCarte();
     }
+
+    const handleChangeAdresseProprio = (event) => {
+        event.preventDefault();
+        setAdresseProprio(event.target.contactSelect.value)
+       
+    }
+
     return (
         <div className="exchange-card">
             <Header/>
@@ -71,7 +89,7 @@ const ExchangeCard = () => {
                             <div className="mx-auto max-w-xs px-8">
                                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
                                             <span
-                                                className="text-5xl font-bold tracking-tight text-gray-900">{item.price} €</span>
+                                                className="text-5xl font-bold tracking-tight text-gray-900">{item.prix} €</span>
                                     <span
                                         className="text-sm font-semibold leading-6 tracking-wide text-gray-600">Euro</span>
                                 </p>
@@ -84,7 +102,7 @@ const ExchangeCard = () => {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" onSubmit={handleSellCard}>
+                    <form className="space-y-6" onSubmit={handleEchangeCarte}>
                         <div>
                             <div className="flex items-center justify-between">
                                 <label htmlFor="contact"
@@ -97,8 +115,9 @@ const ExchangeCard = () => {
                                     id="contactSelect"
                                     name="contactSelect"
                                     required
+                                    onChange={handleChangeAdresseProprio}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                    <option value="">-- Choisir une carte --</option>
+                                    <option value={adresseProprio}>-- Choisir une carte --</option>
                                     {contacts.map((item) => (
                                         <option value={item.email}>{item.name}</option>
                                     ))}
@@ -126,4 +145,4 @@ const ExchangeCard = () => {
     )
 }
 
-export default ExchangeCard;
+export default EchangeCarte;

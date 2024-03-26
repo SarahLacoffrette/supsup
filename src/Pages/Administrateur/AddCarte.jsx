@@ -1,40 +1,64 @@
 import Header from "../../Components/Header";
 
-const cards = [
+const cartes = [
     {
         id: 1,
-        type: 10
+        typeCarte: 10
 
     },
     {
         id: 2,
-        type: 20
+        typeCarte: 20
     },
     {
         id: 3,
-        type: 40
+        typeCarte: 40
     }
 ]
 
 const AddCarte = () => {
 
+    const [web3Error, setWeb3Error] = useState(null);
+    const [prixCarte10, setPrixCarte10] = useState(0);
+    const [prixCarte20, setPrixCarte20] = useState(0);
+    const [prixCarte40, setPrixCarte40] = useState(0);
+    const [nbCartesValues, setNbCartesValues] = (0);
+
+    const postData = async () => {
+        try {
+            //const creerCarteParMultipledeDix = await contract.methods.creerCarteParMultipledeDix(nbCartesValues, prixCarte10, prixCarte20, prixCarte40).call();
+        } catch (error) {
+            setWeb3Error(error.message);
+        }
+    };
+
     const handleSellCard = (event) => {
         event.preventDefault();
-        console.log('id', event.target.cardSelect.value);
-        console.log('price', event.target.price.value);
-        console.log('nombreUtilisation', event.target.nombreUtilisation.value);
-        console.log('type', cards.find(item => item.id == event.target.cardSelect.value).type);
+        console.log('id', event.target.carteselect.value);
+        console.log('prix carte 10', event.target.prixCarte10.value);
+        console.log('prix carte 20', event.target.prixCarte20.value);
+        console.log('prix carte 40', event.target.prixCarte40.value);
     }
 
-    const typeCarte = (type) => {
-        if(type === 10){
-            return 'Carte Membre';
-        } else if(type === 20){
-            return 'Carte Argent';
-        } else {
-            return 'Carte Gold';
-        }
+    const handleChangePrixCarte10 = (event) =>{
+        event.preventDefault();
+        setPrixCarte10(event.target.value);
     }
+
+    const handleChangePrixCarte20 = (event) =>{
+        event.preventDefault();
+        setPrixCarte20(event.target.value);
+    }
+
+    const handleChangePrixCarte40 = (event) =>{
+        event.preventDefault();
+        setPrixCarte40(event.target.value);
+    }
+
+   const handleChangeNbCartesValues = (event) => {
+    event.preventDefault();
+    setNbCartesValues(event.target.value);
+   }
 
     return (
         <div>
@@ -47,42 +71,23 @@ const AddCarte = () => {
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                        Ajouter une carte à vendre ...
+                        Ajouter des cartes à vendre ...
                     </h2>
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" onSubmit={handleSellCard}>
                         <div>
-                            <div className="flex items-center justify-between">
-                                <label htmlFor="card"
-                                       className="block text-sm font-medium leading-6 text-gray-900">
-                                    Choisir la carte
-                                </label>
-                            </div>
-                            <div className="mt-2">
-                                <select
-                                    id="cardSelect"
-                                    name="cardSelect"
-                                    required
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                    <option value="">-- Choisir une carte --</option>
-                                    {cards.map((item) => (
-                                        <option value={item.id}>{typeCarte(item.type)}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                        <div>
                             <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
-                                Price
+                                Prix carte Membre
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="price"
-                                    name="price"
-                                    type="number"
-                                    autoComplete="00"
+                                    id="prixCarte10"
+                                    name="prixCarte10"
+                                    typeCarte="number"
+                                    value={prixCarte10}
+                                    onChange={handleChangePrixCarte10}
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
@@ -90,16 +95,50 @@ const AddCarte = () => {
                         </div>
                         <div>
                             <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
-                                Nombre d'utilisation
+                                Prix carte Argent
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    id="prixCarte20"
+                                    name="prixCarte20"
+                                    typeCarte="number"
+                                    value={prixCarte20}
+                                    onChange={handleChangePrixCarte20}
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
+                                Prix carte Gold
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    id="prixCarte40"
+                                    name="prixCarte40"
+                                    typeCarte="number"
+                                    value={prixCarte40}
+                                    onChange={handleChangePrixCarte40}
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
+                                Nombre de carte à créer
                             </label>
                             <div className="mt-2">
                                 <input
                                     id="nombreUtilisation"
                                     name="nombreUtilisation"
-                                    type="number"
+                                    typeCarte="number"
                                     min="0"
-                                    max="10"
-                                    autoComplete="00"
+                                    max="100"
+                                    step = "10"
+                                    value={nbCartesValues}
+                                    onChange={handleChangeNbCartesValues}
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
@@ -108,9 +147,9 @@ const AddCarte = () => {
 
                         <div>
                             <button
-                                type="submit"
+                                typeCarte="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >Ajouter cette carte
+                            >Ajouter ces cartes
                             </button>
 
                         </div>

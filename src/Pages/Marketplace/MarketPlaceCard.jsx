@@ -40,6 +40,7 @@ const MarketPlaceCard = () => {
         };
         fetchData();
     }, []);
+    
     const imageCard = (type) => {
         if (type === 10){
             return "https://img.freepik.com/free-vector/realistic-glass-effect-credit-card_52683-74367.jpg?w=1800&t=st=1711299318~exp=1711299918~hmac=9535a0069d35271433d9925111f64efd016c237344d8738d80d75d88830b838f"
