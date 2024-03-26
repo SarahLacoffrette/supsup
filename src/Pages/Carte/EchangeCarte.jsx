@@ -24,18 +24,29 @@ const EchangeCarte = () => {
     const [web3Error, setWeb3Error] = useState(null);
 
     const [adresseProprio, setAdresseProprio] = useState('');
+    const [id, setId] = useState(0);
+    const [type, setType] = useState(0);
+    const [prix, setPrix] = useState(0);
+    const [nombreUtilisation, setNombreUtilisation] = useState(0);
 
-    const item = {
-        id: params.get('id'),
-        type: params.get('type'),
-        prix: params.get('prix'),
-        nombreUtilisation: params.get('nombreUtilisation'),
-    };
+    const typeCard = (type) => {
+        if (type === '10') {
+            return "Carte Membre"
+        } else if (type === '20') {
+            return "Carte Argent"
+        } else if (type === '40') {
+            return "Carte Gold"
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 //const contacts = await contract.methods.obtenirUtilisateur().call();
+                setId(params.get('id'));
+                setType(params.get('type'));
+                setPrix(params.get('prix'));
+                setNombreUtilisation(params.get('nombreUtilisation'));
             } catch (error) {
                 setWeb3Error(error.message);
             }
@@ -45,7 +56,7 @@ const EchangeCarte = () => {
 
     const echangerCarte = async() => {
         try {
-            // await contract.methods.envoyerCarte(item.id, item.type, adresseProprio).call();
+            // await contract.methods.envoyerCarte(item.id, item.type, adresseProprio).send({from: 'contractAddress'});
         } catch (error) {
             setWeb3Error(error.message);
         }
@@ -81,7 +92,10 @@ const EchangeCarte = () => {
                 <div
                     className="mt-10 w-2xl rounded-3xl ring-1 ring-gray-300 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
                     <div className="p-8 sm:p-10 lg:flex-auto">
-                        <h3 className="text-2xl font-bold tracking-tight text-gray-500">{item.name}</h3>
+                        <h3 className="text-2xl font-bold tracking-tight text-gray-500">{typeCard(type)}</h3>
+                        <p className="mt-4 text-sm leading-5 text-gray-600">
+                            Vous êtes membre et entrez dans un monde d'avantages exclusifs. Profitez d'offres spéciales, de réductions sur mesure el d'une expérience personnalisée à chaque voyage.
+                        </p>
                     </div>
                     <div className="mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
                         <div
@@ -89,12 +103,12 @@ const EchangeCarte = () => {
                             <div className="mx-auto max-w-xs px-8">
                                 <p className="mt-6 flex items-baseline justify-center gap-x-2">
                                             <span
-                                                className="text-5xl font-bold tracking-tight text-gray-900">{item.prix} €</span>
+                                                className="text-5xl font-bold tracking-tight text-gray-900">{prix} Wei</span>
                                     <span
                                         className="text-sm font-semibold leading-6 tracking-wide text-gray-600">Euro</span>
                                 </p>
                                 <p className="mt-6 text-xs leading-5 text-gray-600">
-                                    Nombre d'utilisation restant : {item.nombreUtilisation}
+                                    Nombre d'utilisation restant : {nombreUtilisation}
                                 </p>
                             </div>
                         </div>
@@ -111,17 +125,15 @@ const EchangeCarte = () => {
                                 </label>
                             </div>
                             <div className="mt-2">
-                                <select
-                                    id="contactSelect"
-                                    name="contactSelect"
-                                    required
+                                <input
+                                    id="adresseProprio"
+                                    name="adresseProprio"
+                                    value={adresseProprio}
                                     onChange={handleChangeAdresseProprio}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                    <option value={adresseProprio}>-- Choisir une carte --</option>
-                                    {contacts.map((item) => (
-                                        <option value={item.email}>{item.name}</option>
-                                    ))}
-                                </select>
+                                    type="text"
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
                             </div>
                         </div>
                         <div>
@@ -134,7 +146,7 @@ const EchangeCarte = () => {
                         </div>
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        <a href="/Carte/Dashboard"
+                        <a href="/tableaudebord"
                            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Retour
                         </a>

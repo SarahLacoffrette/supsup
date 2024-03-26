@@ -1,5 +1,6 @@
 import Header from "../../Components/Header";
 import HeaderAdmin from "../../Components/HeaderAdmin";
+import {useState, useEffect} from "react";
 
 const products = [
     {
@@ -9,8 +10,8 @@ const products = [
         href: '#',
         imageSrc: 'https://www.azutura.com/media/catalog/product/cache/49/image/650x/040ec09b1e35df139433887a97daa66f/W/S/WS-45942_WP.jpg',
         imageAlt: "Paris",
-        price: '50 €',
-        locomotion: 'Train',
+        price: '50 Wei',
+        typeVehicule: 'Train',
     },{
         id: 2,
         depart: 'Belgique',
@@ -18,8 +19,8 @@ const products = [
         href: '#',
         imageSrc: 'https://c4.wallpaperflare.com/wallpaper/49/397/108/5bd3b695ce3d5-wallpaper-preview.jpg',
         imageAlt: "Belgique",
-        price: '60 €',
-        locomotion: 'Train',
+        price: '60 Wei',
+        typeVehicule: 'Train',
     },{
         id: 3,
         depart: 'Londres',
@@ -27,8 +28,8 @@ const products = [
         href: '#',
         imageSrc: 'https://images.pexels.com/photos/77171/pexels-photo-77171.jpeg',
         imageAlt: "Londres",
-        price: '55 €',
-        locomotion: 'Train',
+        price: '55 Wei',
+        typeVehicule: 'Train',
     },{
         id: 4,
         depart: 'Barcelone',
@@ -36,8 +37,8 @@ const products = [
         href: '#',
         imageSrc: 'https://images8.alphacoders.com/354/354497.jpg',
         imageAlt: "Barcelone",
-        price: '55 €',
-        locomotion: 'Bus',
+        price: '55 Wei',
+        typeVehicule: 'Bus',
     },{
         id: 5,
         depart: 'Amsterdam',
@@ -45,8 +46,8 @@ const products = [
         href: '#',
         imageSrc: 'https://i.pinimg.com/736x/dc/64/e8/dc64e8947c2b70fe6fbd52595416e0c6.jpg',
         imageAlt: "Los Angeles",
-        price: '550 €',
-        locomotion: 'Bus',
+        price: '550 Wei',
+        typeVehicule: 'Bus',
     },{
         id: 6,
         depart: 'Tours',
@@ -54,8 +55,8 @@ const products = [
         href: '#',
         imageSrc: 'https://media.istockphoto.com/id/498553541/fr/photo/place-plumereau-dans-les-circuits.jpg?s=612x612&w=0&k=20&c=bbpFAtNJ3cJ0Yaf8ERYcCHOQR5j9I_azf4I-mx-maYA=',
         imageAlt: "Tours",
-        price: '37 €',
-        locomotion: 'Tram',
+        price: '37 Wei',
+        typeVehicule: 'Tram',
     },{
         id: 7,
         depart: 'Rome',
@@ -63,8 +64,8 @@ const products = [
         href: '#',
         imageSrc: 'https://media.istockphoto.com/id/1323460157/photo/rome-italy-night-city-skyline-at-rome-colosseum-empty-nobody.webp?b=1&s=170667a&w=0&k=20&c=XE9O_GYWrL_RaFZH0Gw5P3NAW_YL_BSVcbbq9rlLvXE=',
         imageAlt: "Rome",
-        price: '216 €',
-        locomotion: 'Train',
+        price: '216 Wei',
+        typeVehicule: 'Train',
     },{
         id: 8,
         depart: 'Lille',
@@ -72,8 +73,8 @@ const products = [
         href: '#',
         imageSrc: 'https://s1.1zoom.me/big0/610/Houses_France_Lille_Street_lights_Street_Pavement_582322_1280x854.jpg',
         imageAlt: "Lille",
-        price: '35 €',
-        locomotion: 'Train',
+        price: '35 Wei',
+        typeVehicule: 'Train',
     },{
         id: 9,
         depart: 'Lille',
@@ -81,8 +82,8 @@ const products = [
         href: '#',
         imageSrc: 'https://s1.1zoom.me/big0/610/Houses_France_Lille_Street_lights_Street_Pavement_582322_1280x854.jpg',
         imageAlt: "Lille",
-        price: '15 €',
-        locomotion: 'Tram',
+        price: '15 Wei',
+        typeVehicule: 'Tram',
     },{
         id: 10,
         depart: 'Tours',
@@ -90,8 +91,8 @@ const products = [
         href: '#',
         imageSrc: 'https://media.istockphoto.com/id/498553541/fr/photo/place-plumereau-dans-les-circuits.jpg?s=612x612&w=0&k=20&c=bbpFAtNJ3cJ0Yaf8ERYcCHOQR5j9I_azf4I-mx-maYA=',
         imageAlt: "Tours",
-        price: '14 €',
-        locomotion: 'Tram',
+        price: '14 Wei',
+        typeVehicule: 'Tram',
     }
 ]
 
@@ -142,7 +143,7 @@ const TableauDeBordAdmin = () => {
                                                     )}
                                                 </a>
                                             </h3>
-                                            <p className="mt-1 text-sm text-gray-500">{product.locomotion}</p>
+                                            <p className="mt-1 text-sm text-gray-500">{product.typeVehicule}</p>
                                         </div>
                                         <p className="text-sm font-medium text-gray-900">{product.price}</p>
                                     </div>

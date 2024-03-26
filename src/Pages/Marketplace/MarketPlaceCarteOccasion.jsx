@@ -1,7 +1,7 @@
 import Header from "../../Components/Header";
 import {useEffect, useState} from "react";
 
-const cards = [
+const cartes = [
     {
         id: 1,
         type: 10,
@@ -25,15 +25,14 @@ const cards = [
     }
 ]
 
-const MarketPlaceCard = () => {
+const MarketPlaceCarteOccasion = () => {
 
     const [web3Error, setWeb3Error] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //const obtenirCarteMarcheOccasion = await contract.methods.obtenirCarteMarcheOccasion().call();
-                // => products = obtenirCarteMarcheOccasion   dx
+                //const products = await contract.methods.consulterMarcheOccasion().call();
             } catch (error) {
                 setWeb3Error(error.message);
             }
@@ -61,6 +60,14 @@ const MarketPlaceCard = () => {
         }
     }
 
+    const AchatCarte = async (id) => {
+        try {
+            //await contract.methods.achatCarteMarcheOccasion(id).send({from: accounts[0]});
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     const handleBuy = (id, type, prix, nbUtilisation) => {
         console.log('id : ', id);
         console.log('carte : ', type);
@@ -77,7 +84,7 @@ const MarketPlaceCard = () => {
 
                         <div
                             className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                            {cards.map((product) => (
+                            {cartes.map((product) => (
                                 <div>
                                     <div key={product.id} className="group relative">
                                         <div
@@ -98,7 +105,7 @@ const MarketPlaceCard = () => {
                                                 <p className="mt-1 text-sm text-gray-500">Nombre d'utilisation restantes
                                                     : {product.nombreUtilisation}</p>
                                             </div>
-                                            <p className="text-sm font-medium text-gray-900">{product.price} €</p>
+                                            <p className="text-sm font-medium text-gray-900">{product.price} Wei</p>
                                         </div>
                                         <br/>
                                     </div>
@@ -117,4 +124,4 @@ const MarketPlaceCard = () => {
             </div>
     );
 }
-export default MarketPlaceCard;
+export default MarketPlaceCarteOccasion;

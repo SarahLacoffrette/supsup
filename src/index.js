@@ -16,10 +16,12 @@ import Interne from "./Pages/Destination/Interne";
 import Externe from "./Pages/Destination/Externe";
 import VenteCarte from "./Pages/Carte/VenteCarte";
 import EchangeCarte from "./Pages/Carte/EchangeCarte";
-import MarketPlaceCard from "./Pages/Marketplace/MarketPlaceCard";
+import MarketPlaceCarteOccasion from "./Pages/Marketplace/MarketPlaceCarteOccasion";
 import TableauDeBordAdmin from "./Pages/Administrateur/TableauDeBordAdmin";
 import AddTrajet from "./Pages/Administrateur/AddTrajet";
 import AddCarte from "./Pages/Administrateur/AddCarte";
+import AchatTrajet from "./Pages/Marketplace/AchatTrajet";
+import MesBillets from "./Pages/Destination/MesBillets";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -30,7 +32,7 @@ root.render(
             <Route path={"/connexion"} element={<Connexion/>}/>
             <Route path={"/inscription"} element={<Inscription/>}/>
             <Route path={"/tableauDeBord"} element={<TableauDeBord/>}/>
-            <Route path={"/shop"} component={MarketPlaceTrajet} element={<MarketPlaceTrajet/>}/>
+            <Route path={"/marketplacetrajet"} component={MarketPlaceTrajet} element={<MarketPlaceTrajet/>}/>
             <Route path={"/marketPlaceCarte"} element={<MarketPlaceCarte/>}/>
             <Route path={"/profile"} element={<Profile/>}/>
             <Route path={"/destinationI/:data"} component={Interne}  element={<Interne/>}/>
@@ -38,10 +40,12 @@ root.render(
             <Route path={"/destination"} exact component={Destination} element={<Destination/>} />
             <Route path={"/venteCarte"} element={<VenteCarte/>}/>
             <Route path={"/echangeCarte"} element={<EchangeCarte/>}/>
-            <Route path={"/marketPlaceCard"} element={<MarketPlaceCard/>}/>
+            <Route path={"/MarketPlaceCarteOccasion"} element={<MarketPlaceCarteOccasion/>}/>
             <Route path={"/tableaudebordadmin"} element={<TableauDeBordAdmin/>}/>
             <Route path={"/addTrajet"} element={<AddTrajet/>}/>
             <Route path={"/addCarte"} element={<AddCarte/>}/>
+            <Route path={"/achatTrajet"} element={<AchatTrajet/>}/>
+            <Route path={"/mesBillets"} element={<MesBillets/>}/>
             <Route path={"*"} element={<Error/>}/>
         </Routes>
     </BrowserRouter>

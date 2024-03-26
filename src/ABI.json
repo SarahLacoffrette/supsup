@@ -163,7 +163,12 @@
           },
           {
             "internalType": "bool",
-            "name": "enVente",
+            "name": "enVenteMarchePrincipal",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "enVenteMarcheOccasion",
             "type": "bool"
           },
           {
@@ -208,7 +213,12 @@
           },
           {
             "internalType": "bool",
-            "name": "enVente",
+            "name": "enVenteMarchePrincipal",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "enVenteMarcheOccasion",
             "type": "bool"
           },
           {
@@ -253,7 +263,12 @@
           },
           {
             "internalType": "bool",
-            "name": "enVente",
+            "name": "enVenteMarchePrincipal",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "enVenteMarcheOccasion",
             "type": "bool"
           },
           {

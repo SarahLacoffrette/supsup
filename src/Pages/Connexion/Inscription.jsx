@@ -1,6 +1,8 @@
 import Header from "../../Components/Header";
 import {useEffect, useState} from "react";
-import {connectToWeb3, contract} from "../../web3Util";
+import {contract, connectToWeb3} from "../../web3Util";
+import Web3 from "web3";
+//import {connectToWeb3, contract} from "../../web3Util";
 
 const Inscription = () => {
 
@@ -25,7 +27,10 @@ const Inscription = () => {
 
     const postData = async () => {
         try {
-            //const inscription = await contract.methods.inscription(pseudo, mdp).call();
+            const web3 = new Web3(window.ethereum);
+            const accounts = await web3.eth.getAccounts();
+            const inscription = await contract.methods.inscription(pseudo, mdp).send({from: accounts[0]});
+
         } catch (error) {
             setWeb3Error(error.message);
         }
@@ -33,8 +38,8 @@ const Inscription = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(connectToWeb3.accounts);
         console.log('Pseudo : ', event.target.pseudo.value);
-        console.log('Email : ', event.target.email.value);
         console.log('Mdp : ', event.target.Mdp.value);
         postData();
     }
@@ -84,20 +89,6 @@ const Inscription = () => {
                                 />
                             </div>
                         </div><br/>
-                        <div className="sm:col-span-6">
-                            <label htmlFor="Email" className="block text-sm font-medium leading-6 text-gray-900">
-                                Email
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    autoComplete="email"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                        </div>
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">
                                 <label htmlFor="Mdp"
@@ -106,7 +97,7 @@ const Inscription = () => {
                                 </label>
                                 <div className="mt-2">
                                     <input
-                                        type="Mdp"
+                                        type="password"
                                         name="Mdp"
                                         id="Mdp"
                                         value={mdp} onChange={handleChangeMdp}
@@ -122,7 +113,7 @@ const Inscription = () => {
                                 </label>
                                 <div className="mt-2">
                                     <input
-                                        type="Mdp"
+                                        type="password"
                                         name="confirm-Mdp"
                                         id="confirm-Mdp"
                                         value={inputConfirmMdp} onChange={handleChangeConfirmMdp}

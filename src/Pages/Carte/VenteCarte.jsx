@@ -1,5 +1,5 @@
 import Header from "../../Components/Header";
-import {Link, useParams} from "react-router-dom";
+import {Link, useLocation, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 const cartes = [
@@ -27,8 +27,23 @@ const cartes = [
 const VenteCarte = () => {
 
     const [web3Error, setWeb3Error] = useState(null);
-    const [id, setId] = useSate(0);
-    const [type, setType] = usestate(0);
+    const [id, setId] = useState(0);
+    const [type, setType] = useState(0);
+    const { search } = useLocation();
+    const params = new URLSearchParams(search);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setId(params.get('id'));
+                setType(params.get('type'));
+            } catch (error) {
+                setWeb3Error(error.message);
+            }
+        };
+        fetchData();
+    });
 
     const handleSellCard = (event) => {
         event.preventDefault();
@@ -39,7 +54,7 @@ const VenteCarte = () => {
 
     const VendreCarte = async () => {
         try {
-            //await contract.methods.miseEnVenteCarteMarcheOccasion(id, type).call();
+            //await contract.methods.miseEnVenteCarteMarcheOccasion(id, type).send({from: 'contractAddress'});
         } catch (error) {
             setWeb3Error(error.message);
         }
@@ -78,28 +93,6 @@ const VenteCarte = () => {
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" onSubmit={handleSellCard}>
                         <div>
-                            <div className="flex items-center justify-between">
-                                <label htmlFor="card"
-                                       className="block text-sm font-medium leading-6 text-gray-900">
-                                    Choisir la carte
-                                </label>
-                            </div>
-                            <div className="mt-2">
-                                <select
-                                    id="carteselect"
-                                    name="carteselect"
-                                    onChange={handleChangeCarte(item.id, item.type)}
-                                    required
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                    <option value={type}>-- Choisir une carte --</option>
-                                    {cartes.map((item) => (
-                                        <option value={item.id}>{getCartes(item.type)} - Nombre d'utilisation restant
-                                            : {item.nombreUtilisation}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                        <div>
                             <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
                                 prix
                             </label>
@@ -109,6 +102,7 @@ const VenteCarte = () => {
                                     name="prix"
                                     type="number"
                                     autoComplete="00"
+                                    min='0'
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
@@ -125,7 +119,7 @@ const VenteCarte = () => {
                         </div>
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        <a href="/Destination/Destination"
+                        <a href="/tableaudebord"
                            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Retour
                         </a>

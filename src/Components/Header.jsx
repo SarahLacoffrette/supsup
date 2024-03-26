@@ -15,12 +15,11 @@ const products = [
     { name: 'Tableau de board', description: 'Consultez votre vos cartes et vos voyages', href: '/tableauDeBord', icon: ChartPieIcon },
     { name: 'Réservation', description: 'Réservez votre billet dès maintenant ! ', href: '/destination', icon: CursorArrowRaysIcon },
     { name: 'Profile', description: 'Consulter votre profile', href: '/profile', icon: FingerPrintIcon },
-    { name: 'Acheter une carte', description: 'Ajoutez une carte avantage', href: '/card', icon: SquaresPlusIcon },
+    { name: 'Acheter une carte', description: 'Ajoutez une carte avantage', href: '/marketPlaceCarte', icon: SquaresPlusIcon },
     { name: 'Administration', description: 'Accès administrateur', href: '/tableaudebordadmin', icon: ArrowPathIcon },
 ]
 const callsToAction = [
-    { name: 'Tutoriel', href: '#', icon: PlayCircleIcon },
-    { name: 'Contact', href: '#', icon: PhoneIcon },
+
 ]
 const Header = () => {
     function classNames(...classes) {
@@ -105,14 +104,14 @@ const Header = () => {
                         </Transition>
                     </Popover>
 
-                    <a href="/Carte/Dashboard" className="text-sm font-semibold leading-6 text-gray-900">
-                        Tableau de bord
+                    <a href="/Tableaudebord" className="text-sm font-semibold leading-6 text-gray-900">
+                        Mes Cartes
                     </a>
-                    <a href="/Marketplace/MarketPlaceCard" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href="/mesbillets" className="text-sm font-semibold leading-6 text-gray-900">
+                        Mes Billets
+                    </a>
+                    <a href="/MarketPlaceCarteOccasion" className="text-sm font-semibold leading-6 text-gray-900">
                         Troc de cartes
-                    </a>
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                        Contact
                     </a>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">

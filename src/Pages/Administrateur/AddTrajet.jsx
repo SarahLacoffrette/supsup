@@ -9,6 +9,7 @@ const AddTrajet = () => {
     const [typeVehicule, settypeVehicule] = useState('');
     const [prix, setprix] = useState(10);
     const [url, seturl] = useState("");
+    const [duree, setduree] = useState(0);
 
     const [web3Error, setWeb3Error] = useState(null);
 
@@ -34,9 +35,13 @@ const AddTrajet = () => {
         seturl(event.target.value);
     }
 
+    const handleChangeduree = (event) => {
+        setduree(event.target.value);
+    }
+
     const postData = async () => {
         try {
-            //await contract.methods.creerTrajet.call(typeVehicule, depart, destination, date, 00,  true, 100, prix);
+            //await contract.methods.creerTrajet(typeVehicule, depart, destination, date, duree,  true, 100, prix).send({from: 'contractAddress'});
         } catch (error) {
             setWeb3Error(error.message);
         }
@@ -142,6 +147,23 @@ const AddTrajet = () => {
                                 />
                             </div>
                         </div>
+                        <div>
+                            <label htmlFor="depart" className="block text-sm font-medium leading-6 text-gray-900">
+                                Durée :
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    id="duree"
+                                    name="duree"
+                                    type="number"
+                                    min={"0"}
+                                    value={duree}
+                                    onChange={handleChangeduree}
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
                         <div className="mt-2">
                             <div className="flex items-center justify-between">
                                 <label htmlFor="typeVehicule"
@@ -163,25 +185,7 @@ const AddTrajet = () => {
                             </select>
                         </div>
                         <div>
-                            <div>
-                                <div className="flex items-center justify-between">
-                                    <label htmlFor="url"
-                                           className="block text-sm font-medium leading-6 text-gray-900">
-                                        Date
-                                    </label>
-                                </div>
-                                <div className="mt-2">
-                                    <input
-                                        id="url"
-                                        name="url"
-                                        type="url"
-                                        value={url}
-                                        onChange={handleUrl}
-                                        required
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                            <br/>
                             <button
                                 type="button"
                                 onClick={handleTrajet}
@@ -192,7 +196,7 @@ const AddTrajet = () => {
                         </div>
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        <a href="/dashboardadmin"
+                        <a href="/tableaudebordadmin"
                            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Retour
                         </a>

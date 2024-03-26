@@ -1,5 +1,5 @@
 import Header from "../../Components/Header";
-import {connectToWeb3, contract} from "../../web3Util";
+//import {connectToWeb3, contract} from "../../web3Util";
 
 import { CheckIcon } from '@heroicons/react/20/solid'
 import {useEffect, useState} from "react";
@@ -37,8 +37,8 @@ const MarketPlaceCarte = () => {
         fetchData();
     }, []);
 
-    const acheterBillet = async () =>{
-        //await contract.methods.achatCarteMarchePrincipal.call(id);
+    const acheterCarte = async () =>{
+        //await contract.methods.achatCarteMarchePrincipal(id).send({from: accounts[0], value: web3.utils.toWei(prix, 'ether')});
         //TODO : Revoir la gestion des id
     }
 
@@ -46,7 +46,7 @@ const MarketPlaceCarte = () => {
         console.log('id : ', id);
         console.log('carte : ', carte);
         console.log('prix : ', prix);
-        acheterBillet();
+        acheterCarte();
     }
 
     return (
@@ -89,10 +89,9 @@ const MarketPlaceCarte = () => {
                             <div
                                 className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
                                 <div className="mx-auto max-w-xs px-8">
-                                    <p className="text-base font-semibold text-gray-600">Payez une fois, possédez-le
-                                        pour toujours</p>
+                                    
                                     <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                                        <span className="text-5xl font-bold tracking-tight text-gray-900">45 €</span>
+                                        <span className="text-5xl font-bold tracking-tight text-gray-900">45 Wei</span>
                                         <span
                                             className="text-sm font-semibold leading-6 tracking-wide text-gray-600">Euro</span>
                                     </p>
@@ -103,9 +102,7 @@ const MarketPlaceCarte = () => {
                                     >
                                         Choisir cette carte
                                     </a>
-                                    <p className="mt-6 text-xs leading-5 text-gray-600">
-                                        Factures et reçus disponibles pour un remboursement facile par l'entreprise
-                                    </p>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -138,10 +135,8 @@ const MarketPlaceCarte = () => {
                             <div
                                 className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
                                 <div className="mx-auto max-w-xs px-8">
-                                    <p className="text-base font-semibold text-gray-500">Payez une fois, possédez-le
-                                        pour toujours</p>
                                     <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                                        <span className="text-5xl font-bold tracking-tight text-gray-900">60 €</span>
+                                        <span className="text-5xl font-bold tracking-tight text-gray-900">60 Wei</span>
                                         <span
                                             className="text-sm font-semibold leading-6 tracking-wide text-gray-600">Euro</span>
                                     </p>
@@ -152,9 +147,7 @@ const MarketPlaceCarte = () => {
                                     >
                                         Choisir cette carte
                                     </a>
-                                    <p className="mt-6 text-xs leading-5 text-gray-600">
-                                        Factures et reçus disponibles pour un remboursement facile par l'entreprise
-                                    </p>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -187,10 +180,9 @@ const MarketPlaceCarte = () => {
                             <div
                                 className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
                                 <div className="mx-auto max-w-xs px-8">
-                                    <p className="text-base font-semibold text-gray-600">Payez une fois, possédez-le
-                                        pour toujours</p>
+                                    
                                     <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                                        <span className="text-5xl font-bold tracking-tight text-gray-900">75 €</span>
+                                        <span className="text-5xl font-bold tracking-tight text-gray-900">75 Wei</span>
                                         <span
                                             className="text-sm font-semibold leading-6 tracking-wide text-gray-600">Euro</span>
                                     </p>
@@ -201,9 +193,7 @@ const MarketPlaceCarte = () => {
                                     >
                                         Choisir cette carte
                                     </a>
-                                    <p className="mt-6 text-xs leading-5 text-gray-600">
-                                        Factures et reçus disponibles pour un remboursement facile par l'entreprise
-                                    </p>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
 import Header from "../../Components/Header";
+import {useState} from "react";
 
 const cartes = [
     {
@@ -19,14 +20,14 @@ const cartes = [
 const AddCarte = () => {
 
     const [web3Error, setWeb3Error] = useState(null);
-    const [prixCarte10, setPrixCarte10] = useState(0);
-    const [prixCarte20, setPrixCarte20] = useState(0);
-    const [prixCarte40, setPrixCarte40] = useState(0);
-    const [nbCartesValues, setNbCartesValues] = (0);
+    const [prixCarte10, setPrixCarte10] = useState();
+    const [prixCarte20, setPrixCarte20] = useState();
+    const [prixCarte40, setPrixCarte40] = useState();
+    const [nbCartesValues, setNbCartesValues] = useState();
 
     const postData = async () => {
         try {
-            //const creerCarteParMultipledeDix = await contract.methods.creerCarteParMultipledeDix(nbCartesValues, prixCarte10, prixCarte20, prixCarte40).call();
+            //const creerCarteParMultipledeDix = await contract.methods.creerCarteParMultipledeDix(nbCartesValues, prixCarte10, prixCarte20, prixCarte40).send({from: 'contractAddress'});
         } catch (error) {
             setWeb3Error(error.message);
         }
@@ -85,7 +86,8 @@ const AddCarte = () => {
                                 <input
                                     id="prixCarte10"
                                     name="prixCarte10"
-                                    typeCarte="number"
+                                    type="number"
+                                    min={"0"}
                                     value={prixCarte10}
                                     onChange={handleChangePrixCarte10}
                                     required
@@ -101,7 +103,8 @@ const AddCarte = () => {
                                 <input
                                     id="prixCarte20"
                                     name="prixCarte20"
-                                    typeCarte="number"
+                                    type="number"
+                                    min={"0"}
                                     value={prixCarte20}
                                     onChange={handleChangePrixCarte20}
                                     required
@@ -117,7 +120,8 @@ const AddCarte = () => {
                                 <input
                                     id="prixCarte40"
                                     name="prixCarte40"
-                                    typeCarte="number"
+                                    type="number"
+                                    min={"0"}
                                     value={prixCarte40}
                                     onChange={handleChangePrixCarte40}
                                     required
@@ -133,7 +137,7 @@ const AddCarte = () => {
                                 <input
                                     id="nombreUtilisation"
                                     name="nombreUtilisation"
-                                    typeCarte="number"
+                                    type="number"
                                     min="0"
                                     max="100"
                                     step = "10"
@@ -155,7 +159,7 @@ const AddCarte = () => {
                         </div>
                     </form>
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        <a href="/dashboardadmin"
+                        <a href="/tableaudebordadmin"
                            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                             Retour
                         </a>
